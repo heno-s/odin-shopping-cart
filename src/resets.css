@@ -1,0 +1,21 @@
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+}
+
+input {
+    background-color: transparent;
+    border: none;
+}
+
+html {
+    font-family: sans-serif;
+}
