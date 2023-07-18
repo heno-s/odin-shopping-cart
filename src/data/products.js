@@ -121,6 +121,9 @@ const products = [
         description: "Awesome iphone 13 pro",
         price: 1150,
     },
-];
+].map((product) => {
+    product.id = Math.random().toString(16).slice(2);
+    return product;
+});
 
 export default products;

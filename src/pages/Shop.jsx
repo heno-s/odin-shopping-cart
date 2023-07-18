@@ -7,17 +7,14 @@ export default function Shop() {
         <div className={styles.container}>
             <div className={styles.products}>
                 {products.map((product) => (
-                    <Product
-                        key={product.description + product.image}
-                        {...product}
-                    />
+                    <Product key={product.id} {...product} />
                 ))}
             </div>
         </div>
     );
 }
 
-function Product({ title, description, image, price }) {
+function Product({ id, title, description, image, price }) {
     const [count, setCount] = useState("1");
 
     useEffect(() => {
