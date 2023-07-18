@@ -64,3 +64,10 @@
     background-color: currentColor;
     transform: translateY(100%);
 }
+
+.submit-button {
+    padding: 6px 12px;
+    background-color: transparent;
+    border: 2px solid;
+    border-radius: 8px;
+}

@@ -31,7 +31,9 @@ function Product({ title, description, image, price }) {
                     <button type="button">+</button>
                 </div>
 
-                <button>Add</button>
+                <button className={styles["submit-button"]}>
+                    Add
+                </button>
             </form>
         </div>
     );
