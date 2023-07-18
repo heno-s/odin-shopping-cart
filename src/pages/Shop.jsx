@@ -4,9 +4,11 @@ import products from "../data/products";
 export default function Shop() {
     return (
         <div className={styles.container}>
-            {products.map((product) => (
-                <Product key={product.description} {...product} />
-            ))}
+            <div className={styles.products}>
+                {products.map((product) => (
+                    <Product key={product.description} {...product} />
+                ))}
+            </div>
         </div>
     );
 }
@@ -19,7 +21,7 @@ function Product({ title, description, image, price }) {
             <p className={styles["product-description"]}>
                 {description}
             </p>
-            <span className={styles["product-price"]}>{price}</span>
+            <span className={styles["product-price"]}>{price} €</span>
         </div>
     );
 }

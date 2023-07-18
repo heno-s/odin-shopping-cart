@@ -1,0 +1,28 @@
+.container {
+    padding-top: 60px;
+}
+
+.product,
+.products {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+
+.product {
+    gap: 6px;
+}
+
+.product-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+.product img {
+    width: 140px;
+}
+
+.product-price {
+    font-size: 1.4rem;
+    font-weight: bold;
+}
