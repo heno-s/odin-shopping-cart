@@ -1,0 +1,34 @@
+.container {
+    position: relative;
+    background-color: #0006;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 40px;
+    align-items: center;
+    padding: 20px 40px;
+}
+
+.container::before {
+    content: "";
+    position: absolute;
+    background-image: url(../images/main-bg-iphones.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    inset: 0;
+    z-index: -1;
+}
+
+.slogan {
+    color: #fff;
+    font-size: 2rem;
+    text-align: center;
+    margin-top: -160px;
+}
+
+.cta-button {
+    padding: 20px 40px;
+    font-size: 1.8rem;
+    cursor: pointer;
+}
