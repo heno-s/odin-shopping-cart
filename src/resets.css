@@ -19,3 +19,7 @@ input {
 html {
     font-family: sans-serif;
 }
+
+a {
+    color: inherit;
+}

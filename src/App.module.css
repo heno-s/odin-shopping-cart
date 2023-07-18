@@ -1,0 +1,31 @@
+.navbar {
+    display: flex;
+    gap: 40px;
+    padding: 20px 30px;
+    background-color: #47494c;
+    color: #fff;
+    font-size: 1.6rem;
+}
+
+.navbar a {
+    text-decoration: none;
+    position: relative;
+}
+
+.navbar a[class="active"] {
+    color: #ff8f8f;
+}
+
+.navbar a[class="active"]::before {
+    content: "";
+    width: 100%;
+    height: 4px;
+    background-color: currentColor;
+    position: absolute;
+    bottom: 0;
+    transform: translateY(150%);
+}
+
+.navbar a:first-child {
+    margin-right: auto;
+}
