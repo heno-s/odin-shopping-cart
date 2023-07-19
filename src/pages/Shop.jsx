@@ -1,34 +1,8 @@
 import styles from "./Shop.module.css";
 import products from "../data/products";
 import { useEffect, useState } from "react";
-import useCartItems from "../hooks/useCartItems";
 
-export default function Shop() {
-    const [cartItems, setCartItems] = useCartItems();
-
-    function handleAddToCart(id, count) {
-        const cartItem = cartItems.find(
-            (cartItem) => cartItem.id === id
-        );
-
-        if (cartItem !== undefined) {
-            const newCartItems = cartItems.map((cartItem) => {
-                if (cartItem.id === id) {
-                    return {
-                        ...cartItem,
-                        count: cartItem.count + count,
-                    };
-                } else {
-                    return cartItem;
-                }
-            });
-
-            setCartItems(newCartItems);
-        } else {
-            setCartItems([...cartItems, { id, count }]);
-        }
-    }
-
+export default function Shop({ handleAddToCart }) {
     return (
         <div className={styles.container}>
             <div className={styles.products}>
