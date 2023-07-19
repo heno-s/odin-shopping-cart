@@ -21,14 +21,14 @@ function App() {
         )
     );
 
-    function handleAddToCart(id, count) {
+    function handleAddToCart(productData, count) {
         const cartItem = cartItems.find(
-            (cartItem) => cartItem.id === id
+            (cartItem) => cartItem.id === productData.id
         );
 
         if (cartItem !== undefined) {
             const newCartItems = cartItems.map((cartItem) => {
-                if (cartItem.id === id) {
+                if (cartItem.id === productData.id) {
                     return {
                         ...cartItem,
                         count: cartItem.count + count,
@@ -40,7 +40,7 @@ function App() {
 
             setCartItems(newCartItems);
         } else {
-            setCartItems([...cartItems, { id, count }]);
+            setCartItems([...cartItems, { ...productData, count }]);
         }
 
         setCartItemsCount(cartItemsCount + count);
@@ -71,7 +71,10 @@ function App() {
                         <Shop handleAddToCart={handleAddToCart} />
                     }
                 />
-                <Route path="/cart" element={<Cart />} />
+                <Route
+                    path="/cart"
+                    element={<Cart cartItems={cartItems} />}
+                />
             </Routes>
         </div>
     );

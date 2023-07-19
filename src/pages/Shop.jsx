@@ -57,7 +57,17 @@ function Product({
             <form
                 onSubmit={(evt) => {
                     evt.preventDefault();
-                    handleSubmit(id, +count);
+                    handleSubmit(
+                        {
+                            id,
+                            title,
+                            description,
+                            image,
+                            price,
+                        },
+                        +count
+                    );
+                    setCount("1");
                 }}
             >
                 <div className={styles["product-controls"]}>
