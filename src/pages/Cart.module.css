@@ -1,0 +1,40 @@
+.container {
+    padding: 20px 40px;
+}
+
+.items {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 150px);
+    gap: 40px;
+    justify-content: center;
+    margin-bottom: 60px;
+}
+
+.item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    font-size: 1.4rem;
+}
+
+.item img {
+    max-width: 150px;
+}
+
+.total {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 1.4rem;
+}
+
+.total button {
+    font-size: inherit;
+    cursor: pointer;
+    background-color: #f17c7c;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 6px;
+}
