@@ -10,9 +10,16 @@ import Home from "./pages/Home";
 import Shop from "./pages/Shop";
 import Cart from "./pages/Cart";
 import useCartItems from "./hooks/useCartItems";
+import { useState } from "react";
 
 function App() {
     const [cartItems, setCartItems] = useCartItems();
+    const [cartItemsCount, setCartItemsCount] = useState(() =>
+        cartItems.reduce(
+            (itemsCount, cartItem) => itemsCount + cartItem.count,
+            0
+        )
+    );
 
     function handleAddToCart(id, count) {
         const cartItem = cartItems.find(
@@ -35,6 +42,8 @@ function App() {
         } else {
             setCartItems([...cartItems, { id, count }]);
         }
+
+        setCartItemsCount(cartItemsCount + count);
     }
 
     return (
@@ -44,7 +53,12 @@ function App() {
                     <FontAwesomeIcon icon={faHouse} />
                 </NavLink>
                 <NavLink to="/shop">shop</NavLink>
-                <NavLink to="/cart">
+                <NavLink to="/cart" className={styles["cart-link"]}>
+                    {cartItemsCount > 0 && (
+                        <div className={styles["cart-count"]}>
+                            {cartItemsCount}
+                        </div>
+                    )}
                     <FontAwesomeIcon icon={faCartShopping} />
                 </NavLink>
             </header>

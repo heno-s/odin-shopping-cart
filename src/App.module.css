@@ -39,3 +39,22 @@
 .navbar a:first-child {
     margin-right: auto;
 }
+
+.cart-link {
+    position: relative;
+}
+
+.cart-count {
+    position: absolute;
+    background-color: red;
+    border-radius: 50%;
+    font-size: 0.9rem;
+    display: grid;
+    place-items: center;
+    width: 1.4rem;
+    aspect-ratio: 1;
+    right: 0;
+    top: 0;
+    transform: translate(40%, -40%);
+    padding: 2px;
+}
