@@ -3,45 +3,51 @@ import styles from "./Cart.module.css";
 export default function Cart({ handlePayAction, cartItems }) {
     return (
         <div className={styles.container}>
-            <div className={styles.items}>
-                {cartItems.map((cartItem) => {
-                    const items = [];
-                    for (let i = 0; i < cartItem.count; i++) {
-                        items.push(
-                            <CartItem
-                                key={cartItem.id + i}
-                                title={cartItem.title}
-                                image={cartItem.image}
-                                price={cartItem.price}
-                            />
-                        );
-                    }
-                    return items;
-                })}
-            </div>
-            <div className={styles.total}>
-                <span>
-                    Total:{" "}
-                    <strong>
-                        {cartItems.reduce(
-                            (total, cartItem) =>
-                                total +
-                                cartItem.price * cartItem.count,
-                            0
-                        )}{" "}
-                        €
-                    </strong>
-                </span>
+            {cartItems.length > 0 && (
+                <>
+                    {" "}
+                    <div className={styles.items}>
+                        {cartItems.map((cartItem) => {
+                            const items = [];
+                            for (let i = 0; i < cartItem.count; i++) {
+                                items.push(
+                                    <CartItem
+                                        key={cartItem.id + i}
+                                        title={cartItem.title}
+                                        image={cartItem.image}
+                                        price={cartItem.price}
+                                    />
+                                );
+                            }
+                            return items;
+                        })}
+                    </div>
+                    <div className={styles.total}>
+                        <span>
+                            Total:{" "}
+                            <strong>
+                                {cartItems.reduce(
+                                    (total, cartItem) =>
+                                        total +
+                                        cartItem.price *
+                                            cartItem.count,
+                                    0
+                                )}{" "}
+                                €
+                            </strong>
+                        </span>
 
-                <form
-                    onSubmit={(evt) => {
-                        evt.preventDefault();
-                        handlePayAction();
-                    }}
-                >
-                    <button>Pay</button>
-                </form>
-            </div>
+                        <form
+                            onSubmit={(evt) => {
+                                evt.preventDefault();
+                                handlePayAction();
+                            }}
+                        >
+                            <button>Pay</button>
+                        </form>
+                    </div>
+                </>
+            )}
         </div>
     );
 }
