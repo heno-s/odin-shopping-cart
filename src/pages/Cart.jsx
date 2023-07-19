@@ -1,6 +1,6 @@
 import styles from "./Cart.module.css";
 
-export default function Cart({ cartItems }) {
+export default function Cart({ handlePayAction, cartItems }) {
     return (
         <div className={styles.container}>
             <div className={styles.items}>
@@ -33,7 +33,12 @@ export default function Cart({ cartItems }) {
                     </strong>
                 </span>
 
-                <form>
+                <form
+                    onSubmit={(evt) => {
+                        evt.preventDefault();
+                        handlePayAction();
+                    }}
+                >
                     <button>Pay</button>
                 </form>
             </div>

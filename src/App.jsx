@@ -1,6 +1,11 @@
 import "./globalStyles.css";
 import styles from "./App.module.css";
-import { NavLink, Route, Routes } from "react-router-dom";
+import {
+    NavLink,
+    Route,
+    Routes,
+    useNavigate,
+} from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faCartShopping,
@@ -10,7 +15,7 @@ import Home from "./pages/Home";
 import Shop from "./pages/Shop";
 import Cart from "./pages/Cart";
 import useCartItems from "./hooks/useCartItems";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
     const [cartItems, setCartItems] = useCartItems();
@@ -20,6 +25,22 @@ function App() {
             0
         )
     );
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        setCartItemsCount(() =>
+            cartItems.reduce(
+                (itemsCount, cartItem) => itemsCount + cartItem.count,
+                0
+            )
+        );
+    }, [cartItems]);
+
+    function handlePayAction() {
+        setCartItems([]);
+        navigate("/");
+    }
 
     function handleAddToCart(productData, count) {
         const cartItem = cartItems.find(
@@ -73,7 +94,12 @@ function App() {
                 />
                 <Route
                     path="/cart"
-                    element={<Cart cartItems={cartItems} />}
+                    element={
+                        <Cart
+                            cartItems={cartItems}
+                            handlePayAction={handlePayAction}
+                        />
+                    }
                 />
             </Routes>
         </div>
