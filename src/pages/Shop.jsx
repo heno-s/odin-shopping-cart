@@ -1,20 +1,57 @@
 import styles from "./Shop.module.css";
 import products from "../data/products";
 import { useEffect, useState } from "react";
+import useCartItems from "../hooks/useCartItems";
 
 export default function Shop() {
+    const [cartItems, setCartItems] = useCartItems();
+
+    function handleAddToCart(id, count) {
+        const cartItem = cartItems.find(
+            (cartItem) => cartItem.id === id
+        );
+
+        if (cartItem !== undefined) {
+            const newCartItems = cartItems.map((cartItem) => {
+                if (cartItem.id === id) {
+                    return {
+                        ...cartItem,
+                        count: cartItem.count + count,
+                    };
+                } else {
+                    return cartItem;
+                }
+            });
+
+            setCartItems(newCartItems);
+        } else {
+            setCartItems([...cartItems, { id, count }]);
+        }
+    }
+
     return (
         <div className={styles.container}>
             <div className={styles.products}>
                 {products.map((product) => (
-                    <Product key={product.id} {...product} />
+                    <Product
+                        handleSubmit={handleAddToCart}
+                        key={product.id}
+                        {...product}
+                    />
                 ))}
             </div>
         </div>
     );
 }
 
-function Product({ id, title, description, image, price }) {
+function Product({
+    id,
+    title,
+    description,
+    image,
+    price,
+    handleSubmit,
+}) {
     const [count, setCount] = useState("1");
 
     useEffect(() => {
@@ -43,7 +80,12 @@ function Product({ id, title, description, image, price }) {
                 {description}
             </p>
             <span className={styles["product-price"]}>{price} €</span>
-            <form>
+            <form
+                onSubmit={(evt) => {
+                    evt.preventDefault();
+                    handleSubmit(id, +count);
+                }}
+            >
                 <div className={styles["product-controls"]}>
                     <button type="button" onClick={decrement}>
                         -
