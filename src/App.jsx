@@ -14,12 +14,12 @@ import {
 import Home from "./pages/Home";
 import Shop from "./pages/Shop";
 import Cart from "./pages/Cart";
-import useCartItems from "./hooks/useCartItems";
+import useCartProducts from "./hooks/useCartProducts";
 
 function App() {
-    const [cartItems, setCartItems] = useCartItems();
+    const [cartProducts, setCartProducts] = useCartProducts();
 
-    const cartItemsCount = cartItems.reduce(
+    const cartProductsCount = cartProducts.reduce(
         (itemsCount, cartItem) => itemsCount + cartItem.count,
         0
     );
@@ -27,30 +27,37 @@ function App() {
     const navigate = useNavigate();
 
     function handlePayAction() {
-        setCartItems([]);
+        setCartProducts([]);
         navigate("/");
     }
 
     function handleAddToCart(productData, count) {
-        const cartItem = cartItems.find(
-            (cartItem) => cartItem.id === productData.id
+        const cartProduct = cartProducts.find(
+            (cartProduct) => cartProduct.id === productData.id
         );
 
-        if (cartItem !== undefined) {
-            const newCartItems = cartItems.map((cartItem) => {
-                if (cartItem.id === productData.id) {
-                    return {
-                        ...cartItem,
-                        count: cartItem.count + count,
-                    };
-                } else {
-                    return cartItem;
-                }
-            });
+        const isProductInCart = cartProduct !== undefined;
 
-            setCartItems(newCartItems);
+        if (isProductInCart) {
+            const newCartProducts = cartProducts.map(
+                (cartProduct) => {
+                    if (cartProduct.id === productData.id) {
+                        return {
+                            ...cartProduct,
+                            count: cartProduct.count + count,
+                        };
+                    } else {
+                        return cartProduct;
+                    }
+                }
+            );
+
+            setCartProducts(newCartProducts);
         } else {
-            setCartItems([...cartItems, { ...productData, count }]);
+            setCartProducts([
+                ...cartProducts,
+                { ...productData, count },
+            ]);
         }
     }
 
@@ -62,9 +69,9 @@ function App() {
                 </NavLink>
                 <NavLink to="/shop">shop</NavLink>
                 <NavLink to="/cart" className={styles["cart-link"]}>
-                    {cartItemsCount > 0 && (
+                    {cartProductsCount > 0 && (
                         <div className={styles["cart-count"]}>
-                            {cartItemsCount}
+                            {cartProductsCount}
                         </div>
                     )}
                     <FontAwesomeIcon icon={faCartShopping} />
@@ -83,7 +90,7 @@ function App() {
                     path="/cart"
                     element={
                         <Cart
-                            cartItems={cartItems}
+                            cartProducts={cartProducts}
                             handlePayAction={handlePayAction}
                         />
                     }

@@ -1,13 +1,13 @@
 import styles from "./Cart.module.css";
 
-export default function Cart({ handlePayAction, cartItems }) {
+export default function Cart({ handlePayAction, cartProducts }) {
     return (
         <div className={styles.container}>
-            {cartItems.length > 0 && (
+            {cartProducts.length > 0 && (
                 <>
                     {" "}
                     <div className={styles.items}>
-                        {cartItems.map((cartItem) => {
+                        {cartProducts.map((cartItem) => {
                             const items = [];
                             for (let i = 0; i < cartItem.count; i++) {
                                 items.push(
@@ -26,7 +26,7 @@ export default function Cart({ handlePayAction, cartItems }) {
                         <span>
                             Total:{" "}
                             <strong>
-                                {cartItems.reduce(
+                                {cartProducts.reduce(
                                     (total, cartItem) =>
                                         total +
                                         cartItem.price *
