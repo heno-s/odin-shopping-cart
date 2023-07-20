@@ -32,6 +32,11 @@
     color: red;
 }
 
+.item button:hover {
+    background-color: rgb(240, 82, 82);
+    color: #fff;
+}
+
 .total {
     display: flex;
     align-items: center;
