@@ -1,11 +1,14 @@
 import styles from "./Cart.module.css";
 
-export default function Cart({ handlePayAction, cartProducts }) {
+export default function Cart({
+    handlePayAction,
+    cartProducts,
+    handleDeleteFromCart,
+}) {
     return (
         <div className={styles.container}>
             {cartProducts.length > 0 && (
                 <>
-                    {" "}
                     <div className={styles.items}>
                         {cartProducts.map((cartProduct) => {
                             const items = [];
@@ -17,9 +20,13 @@ export default function Cart({ handlePayAction, cartProducts }) {
                                 items.push(
                                     <CartProduct
                                         key={cartProduct.id + i}
+                                        id={cartProduct.id}
                                         title={cartProduct.title}
                                         image={cartProduct.image}
                                         price={cartProduct.price}
+                                        handleDelete={
+                                            handleDeleteFromCart
+                                        }
                                     />
                                 );
                             }
@@ -56,13 +63,13 @@ export default function Cart({ handlePayAction, cartProducts }) {
     );
 }
 
-function CartProduct({ title, image, price }) {
+function CartProduct({ id, title, image, price, handleDelete }) {
     return (
         <div className={styles.item}>
             <span>{title}</span>
             <img src={image} alt={title} />
             <strong>{price} €</strong>
-            <button>remove</button>
+            <button onClick={() => handleDelete(id)}>remove</button>
         </div>
     );
 }

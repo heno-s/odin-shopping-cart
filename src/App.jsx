@@ -61,6 +61,20 @@ function App() {
         }
     }
 
+    function handleDeleteFromCart(id) {
+        const newCartProducts = cartProducts.map((product) => {
+            if (product.id === id) {
+                return { ...product, count: product.count - 1 };
+            } else {
+                return product;
+            }
+        });
+
+        setCartProducts(
+            newCartProducts.filter((product) => product.count > 0)
+        );
+    }
+
     return (
         <div className={styles.app}>
             <header className={styles.navbar}>
@@ -92,6 +106,9 @@ function App() {
                         <Cart
                             cartProducts={cartProducts}
                             handlePayAction={handlePayAction}
+                            handleDeleteFromCart={
+                                handleDeleteFromCart
+                            }
                         />
                     }
                 />
