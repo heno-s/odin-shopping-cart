@@ -15,27 +15,16 @@ import Home from "./pages/Home";
 import Shop from "./pages/Shop";
 import Cart from "./pages/Cart";
 import useCartItems from "./hooks/useCartItems";
-import { useEffect, useState } from "react";
 
 function App() {
     const [cartItems, setCartItems] = useCartItems();
-    const [cartItemsCount, setCartItemsCount] = useState(() =>
-        cartItems.reduce(
-            (itemsCount, cartItem) => itemsCount + cartItem.count,
-            0
-        )
+
+    const cartItemsCount = cartItems.reduce(
+        (itemsCount, cartItem) => itemsCount + cartItem.count,
+        0
     );
 
     const navigate = useNavigate();
-
-    useEffect(() => {
-        setCartItemsCount(() =>
-            cartItems.reduce(
-                (itemsCount, cartItem) => itemsCount + cartItem.count,
-                0
-            )
-        );
-    }, [cartItems]);
 
     function handlePayAction() {
         setCartItems([]);
@@ -63,8 +52,6 @@ function App() {
         } else {
             setCartItems([...cartItems, { ...productData, count }]);
         }
-
-        setCartItemsCount(cartItemsCount + count);
     }
 
     return (
