@@ -7,15 +7,19 @@ export default function Cart({ handlePayAction, cartProducts }) {
                 <>
                     {" "}
                     <div className={styles.items}>
-                        {cartProducts.map((cartItem) => {
+                        {cartProducts.map((cartProduct) => {
                             const items = [];
-                            for (let i = 0; i < cartItem.count; i++) {
+                            for (
+                                let i = 0;
+                                i < cartProduct.count;
+                                i++
+                            ) {
                                 items.push(
-                                    <CartItem
-                                        key={cartItem.id + i}
-                                        title={cartItem.title}
-                                        image={cartItem.image}
-                                        price={cartItem.price}
+                                    <CartProduct
+                                        key={cartProduct.id + i}
+                                        title={cartProduct.title}
+                                        image={cartProduct.image}
+                                        price={cartProduct.price}
                                     />
                                 );
                             }
@@ -27,10 +31,10 @@ export default function Cart({ handlePayAction, cartProducts }) {
                             Total:{" "}
                             <strong>
                                 {cartProducts.reduce(
-                                    (total, cartItem) =>
+                                    (total, cartProduct) =>
                                         total +
-                                        cartItem.price *
-                                            cartItem.count,
+                                        cartProduct.price *
+                                            cartProduct.count,
                                     0
                                 )}{" "}
                                 €
@@ -52,12 +56,13 @@ export default function Cart({ handlePayAction, cartProducts }) {
     );
 }
 
-function CartItem({ title, image, price }) {
+function CartProduct({ title, image, price }) {
     return (
         <div className={styles.item}>
             <span>{title}</span>
             <img src={image} alt={title} />
             <strong>{price} €</strong>
+            <button>remove</button>
         </div>
     );
 }
