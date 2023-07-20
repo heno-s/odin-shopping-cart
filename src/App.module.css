@@ -22,11 +22,11 @@
     position: relative;
 }
 
-.navbar a[class="active"] {
+.navbar a[class*="active"] {
     color: #ff8f8f;
 }
 
-.navbar a[class="active"]::before {
+.navbar a[class*="active"]::before {
     content: "";
     width: 100%;
     height: 4px;
@@ -45,6 +45,7 @@
 }
 
 .cart-count {
+    color: #fff;
     position: absolute;
     background-color: red;
     border-radius: 50%;
