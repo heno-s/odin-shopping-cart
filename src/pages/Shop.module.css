@@ -1,9 +1,17 @@
 .container {
-    padding-top: 60px;
+    padding: 60px 40px 20px;
 }
 
-.product,
 .products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 150px);
+    gap: 40px;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 1000px;
+}
+
+.product {
     display: flex;
     flex-direction: column;
     align-items: center;
