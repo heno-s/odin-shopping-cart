@@ -9,6 +9,7 @@
     justify-content: center;
     margin: 0 auto;
     max-width: 1000px;
+    align-items: center;
 }
 
 .product {
@@ -28,6 +29,8 @@
 }
 .product img {
     width: 140px;
+    aspect-ratio: 1;
+    object-fit: contain;
 }
 
 .product-price {
