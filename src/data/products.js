@@ -122,7 +122,7 @@ const products = [
         price: 1150,
     },
 ].map((product) => {
-    product.id = Math.random().toString(16).slice(2);
+    product.id = product.title; // generated ids are changed every time app is refreshed and is not in sync with localStorage, so title will be the id as its assumed its persistent
     return product;
 });
 
